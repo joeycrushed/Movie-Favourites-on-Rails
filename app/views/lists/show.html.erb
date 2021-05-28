@@ -1,10 +1,20 @@
-<h1>This is the show page for <%= @list.name%></h1>
+<h1><%= @list.name%></h1>
 <% @list.bookmarks.each do |bookmark| %>
-<div> <%= bookmark.movie.title %> <span><%= link_to 'delete', bookmark_path(bookmark), method: :delete, data: {confirm: 'are you sure?'} %> </span></div>
+<div>
+<% if bookmark.photo.attached? %>
+<%= cl_image_tag(bookmark.photo.key, width: 25, height: 25) %>
+ <%= bookmark.movie.title %> <span><%= link_to 'delete', bookmark_path(bookmark), method: :delete, data: {confirm: 'are you sure?'} %>
+ </span></div>
+ <% end %>
 <% end %>
 
 <%= link_to 'Add a movie to your list', new_list_bookmark_path(@list) %>
 
+<div>
+
+<%= link_to 'Back to your lists', lists_path  %>
+
+</div>
 
 <!-- /lists/1/bookmarks/new -->
 <!-- list/:list_id/bookmarks -->
