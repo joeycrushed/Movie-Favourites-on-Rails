@@ -1,10 +1,16 @@
 <h1><%= @list.name%></h1>
+<div class="d-flex flex-row">
 <% @list.bookmarks.each do |bookmark| %>
-<div>
+  <div class="d-flex flex-column">
 <% if bookmark.photo.attached? %>
-<%= cl_image_tag(bookmark.photo.key, width: 25, height: 25) %>
- <%= bookmark.movie.title %> <span><%= link_to 'delete', bookmark_path(bookmark), method: :delete, data: {confirm: 'are you sure?'} %>
- </span></div>
+<%= cl_image_tag(bookmark.photo.key, width: 25, height: 25, class: "mb-1") %>
+<%= cl_image_tag(bookmark.movie.poster_url, height: 250) %>
+<%= bookmark.movie.title %>
+   <span>
+    <%= link_to 'delete', bookmark_path(bookmark), method: :delete, data: {confirm: 'are you sure?'}, class:"align-center" %>
+   </span>
+   </div>
+</div>
  <% end %>
 <% end %>
 
